@@ -1,7 +1,7 @@
 # 🎬 Verflix
 
-**Verflix** es una tienda de alquiler de series y películas online inspirada en Netflix, desarrollada como ejercicio de evaluación de JavaScript.  
-Permite buscar series/películas, añadirlas a una lista de favoritos/carrito y guardarlas para verlas.
+**Verflix** es una tienda online de alquiler de series y películas inspirada en Netflix, desarrollada como ejercicio de evaluación de JavaScript.  
+Permite buscar series/películas, añadirlas a una lista de favoritos/carrito y guardarlas para verlas más tarde.
 
 - 🔍 Campo de búsqueda para filtrar por nombre o palabra clave.
 - ❤️ Sistema de favoritos: añade o elimina con un solo click.
@@ -38,3 +38,9 @@ Permite buscar series/películas, añadirlas a una lista de favoritos/carrito y 
 
 Proyecto desarrollado por Patricia Sánchez.
 **Bootcamp Diseño y Desarrollo Web - Adalab / 2025**
+
+## 🚀 Cómo arrancar el proyecto
+
+Clona este repositorio con git en **Visual Studio Code**:
+
+git clone https://github.com/Adalab/modulo-2-evaluacion-final-psanchezdlf
