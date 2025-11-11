@@ -26,4 +26,18 @@ footer {
 
 /* 2. MAIN */
 
+
+/* Estilo de tarjetas */
+.catalog_list {
+  list-style: none;
+  display: grid;
+  gap: 15px;
+  grid-template-columns: 1fr; /* 1 columna en móvil */
+}
+
+.catalog_list img {
+  height: 300px; 
+}
+
 /* 3. FOOTER */
+
