@@ -3,10 +3,75 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Verflix | Tu videoclub online</title>
+
+    <!-- Biblioteca de iconos -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+
+    <!-- Hoja de estilos -->
+
     <link rel="stylesheet" href="styles/styles.css" />
   </head>
+
   <body>
+    <!-- =================== HEADER =================== -->
+    <header class="header_content">
+      <img class="header_logo" src="" alt="Verflix" />
+      <h1 class="header_title">Tu videoclub online</h1>
+      <p class="header_subtitle">
+        Cientos de pelis y series sin suscripciones. Paga solo por el contenido
+        que quieres ver.
+      </p>
+
+      <!-- Formulario de búsqueda -->
+      <form class="search_form">
+        <input
+          class="search_input"
+          type="text"
+          placeholder="Ey, ¿qué te apetece ver hoy?"
+        />
+        <button class="search_btn">
+          <i class="fa-solid fa-magnifying-glass"></i> Buscar
+        </button>
+      </form>
+    </header>
+
+    <!-- =================== MAIN =================== -->
+    <main class="main_content">
+      <!-- Columna 1: carrito -->
+      <section class="cart">
+        <h2><i class="fa-solid fa-video"></i> Listo para ver</h2>
+        <ul class="cart_list">
+          <!-- Aquí traerá JS los <li> del catálogo -->
+        </ul>
+        <!-- Botón para vaciar lista -->
+        <button class="clear-btn">Vaciar lista</button>
+      </section>
+
+      <!-- Columna 2: catálogo / resultados -->
+      <section class="catalog">
+        <h2><i class="fa-solid fa-star"></i> Popular ahora mismo</h2>
+        <ul class="catalog_list">
+          <!-- Aquí pintará JS los <li> de cada serie/peli -->
+          <li class="product-card">
+            <h3 class="product-card-title">Título peli</h3>
+            <img class="product-card-img" src="" alt="Título peli" />
+            <p class="product-card-price">2,99 €</p>
+            <button class="product-card-add-btn">Añadir</button>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- =================== FOOTER =================== -->
+    <footer class="footer_content">
+      <small> Verflix 2025 © Todos los derechos reservados. </small>
+    </footer>
+
+    <!-- JS -->
     <script src="main.js"></script>
   </body>
 </html>
