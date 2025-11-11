@@ -1,0 +1,29 @@
+:root{
+    --bg:#0e0f13;
+    --text:#e5e7eb;
+    --accent:red;
+    --spacing: 2rem;
+  }
+
+/* RESET Y ESTILOS GENERALES */
+  body {
+  box-sizing:border-box;
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+}
+
+header,
+main,
+footer {
+  padding: var(--spacing);
+}
+
+/* 1. HEADER */
+
+.header_logo {width:400px; height: auto;} /* Tamaño logo */
+
+/* 2. MAIN */
+
+/* 3. FOOTER */
