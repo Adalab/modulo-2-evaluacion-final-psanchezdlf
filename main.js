@@ -15,19 +15,18 @@ const product = { id: 1, title: 'Dexter', price: 2.99, image: './images/series/d
 
 // Array de objetos (series/pelis)
 
-/*let catalog = [
+let catalog = [
   { id: 1, title: 'Dexter',       price: 2.99, image: './images/series/dexter.jpg' },
   { id: 2, title: 'Breaking Bad', price: 3.49, image: './images/series/breaking-bad.jpg' },
   { id: 3, title: 'Frankenstein', price: 4.99, image: './images/pelis/frankenstein.jpg' },
   { id: 4, title: 'Good Boy',     price: 2.99, image: './images/pelis/goodboy.jpg' },
   { id: 5, title: 'Wednesday',     price: 2.99, image: './images/series/wednesday.jpg' },
   { id: 6, title: 'Squid Game',     price: 3.99, image: './images/series/squid-game.jpg' },
-  { id: 7, title: '',     price: 2.99, image: './images/pelis/goodboy.jpg' },
-  { id: 8, title: '',     price: 2.99, image: './images/pelis/goodboy.jpg' },
-  { id: 9, title: '',     price: 2.99, image: './images/pelis/goodboy.jpg' },
-  { id: 4, title: '',     price: 2.99, image: './images/pelis/goodboy.jpg' },
-
-]; */
+  { id: 7, title: 'Dune Part II',     price: 4.99, image: './images/pelis/dune.jpg' },
+  { id: 8, title: 'Wild Robot',     price: 2.99, image: './images/pelis/wild-robot' },
+  { id: 9, title: 'Sucession',     price: 2.99, image: './images/series/sucession' },
+  { id: 10, title: 'The Big Bang Theory',     price: 2.99, image: './images/series/the-big-bang-theory' },
+]; 
 
 
 // SECCIÓN DE FUNCIONES
