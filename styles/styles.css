@@ -26,6 +26,14 @@ footer {
 
 /* 2. MAIN */
 
+/* 1 columna en móvil */
+.main_content {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+  align-items: start;
+  max-width: 1200px;
+}
 
 /* Estilo de tarjetas */
 .catalog_list {
@@ -34,7 +42,7 @@ footer {
   padding: 0;
   display: grid;
   gap: 15px;
-  grid-template-columns: 1fr 1fr; /* 1 columna en móvil */
+  grid-template-columns: 1fr 1fr; 
 }
 
 .catalog_list img {
@@ -43,4 +51,37 @@ footer {
 }
 
 /* 3. FOOTER */
+
+
+
+/* MEDIA QUERIES */
+
+/* tablet/pc: 2 columnas*/
+@media (min-width: 768px) {
+  .main_content {
+    grid-template-columns: 1fr 2fr;
+    gap: 50px;
+  }
+
+  .catalog_list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+}
+
+.catalog_list img {
+  width: 100%;
+  height: 400px; /* pendiente corregir salto de tamaño de img */
+
+}
+
+}
+
+@media (min-width: 1200px) {
+  .catalog_list img {
+  width: 100%;
+  height: 500px; /* pendiente corregir salto de tamaño de img */
+}
+
+}
 
