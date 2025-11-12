@@ -120,7 +120,6 @@ function renderCatalog(list) {
   }
 }
 
-
 //Pintar CARRITO
 
 
