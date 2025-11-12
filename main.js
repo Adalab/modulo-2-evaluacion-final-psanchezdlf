@@ -23,9 +23,9 @@ let catalog = [
   { id: 5, title: 'Wednesday',     price: 2.99, image: './images/series/wednesday.jpg' },
   { id: 6, title: 'Squid Game',     price: 3.99, image: './images/series/squid-game.jpg' },
   { id: 7, title: 'Dune Part II',     price: 4.99, image: './images/pelis/dune.jpg' },
-  { id: 8, title: 'Wild Robot',     price: 2.99, image: './images/pelis/wild-robot' },
-  { id: 9, title: 'Sucession',     price: 2.99, image: './images/series/sucession' },
-  { id: 10, title: 'The Big Bang Theory',     price: 2.99, image: './images/series/the-big-bang-theory' },
+  { id: 8, title: 'Wild Robot',     price: 2.99, image: './images/pelis/wild-robot.jpg' },
+  { id: 9, title: 'Sucession',     price: 2.99, image: './images/series/sucession.jpg' },
+  { id: 10, title: 'The Big Bang Theory',     price: 2.99, image: './images/series/the-big-bang-theory.jpg' },
 ]; 
 
 
@@ -48,6 +48,15 @@ function renderOneProduct(p) {
   `;
 }
 
+// Pinta TODAS
+function renderCatalog(list) {
+  let html = '';
+  for (const item of list) {
+    html += renderOneProduct(item);
+  }
+  catalogUl.innerHTML = html; 
+}
+
 // SECCIÓN DE FUNCIONES DE EVENTOS
 // Aquí van las funciones handler/manejadoras de eventos
 
@@ -63,4 +72,5 @@ function renderOneProduct(p) {
 //   - Pedir datos al servidor
 //   - Pintar (render) elementos en la página
 
-catalogUl.innerHTML = renderOneProduct(product); // pinta SOLO 1 tarjeta 
+catalogUl.innerHTML = renderOneProduct(product); // pinta SOLO 1 tarjeta
+renderCatalog(catalog); // pintamos el array completo
