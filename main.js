@@ -6,9 +6,15 @@ console.log('Página y JS cargados!');
 // Éstos son los elementos que nos traemos de la página HTML y usamos en el código
 
 const catalogUl = document.querySelector('.catalog_list'); // UL donde pintamos el catálogo
+
+//Buscador/filtro
 const searchForm  = document.querySelector('.search_form');
 const searchInput = document.querySelector('.search_input');
 const searchBtn   = document.querySelector('.search_btn');
+
+// Carrito
+const cartUl     = document.querySelector('.cart_list'); // lista del carrito
+const clearBtn   = document.querySelector('.clear-btn'); // botón "Vaciar"
 
 
 // SECCIÓN DE DATOS
@@ -33,10 +39,12 @@ const seedCatalog  = [
 // API del enunciado
 const DATA_URL = 'https://fakestoreapi.com/products'; // Opción 1
 
-//Principal
-let catalog = []
+// Catálogo 
+let catalog = [] // principal
+let filteredCatalog = [];  // lo que se pinta tras filtrar
 
-let filteredCatalog = [];  // filtrado
+// Carrito
+let cart = [];
 
 
 // SECCIÓN DE FUNCIONES
@@ -45,9 +53,10 @@ let filteredCatalog = [];  // filtrado
 //   - con código que usaremos en los eventos
 //   - para pintar (render) en la página.
 
-// Pintar UNA tarjeta (interpolaciones) conviertes ese dato en un string HTML (interpolaciones)
 
-function renderOneProduct(p) {
+// Pintar UNA tarjeta (interpolaciones) conviertes ese dato en un string HTML (interpolaciones)
+//Versión inicial (no sabe el estado del carrito)
+/*function renderOneProduct(p) {
   return `
     <li class="product-card" data-id="${p.id}">
       <h3>${p.title}</h3>
@@ -65,7 +74,38 @@ function renderCatalog(list) {
     html += renderOneProduct(item);
   }
   catalogUl.innerHTML = html; 
+}*/
+
+// Saber si un producto está en el carrito
+function isInCart(id) {
+  return cart.some(item => item.id === id);
 }
+
+//Repintamos UNA tarjeta 
+// Ahora la card consulta si el producto está en el carrito con isInCart(id).
+
+function renderOneProduct(p) {
+  const inCart  = isInCart(p.id);
+  // Texto de botón según estado
+  const btnText = inCart ? 'Eliminar' : 'Comprar';
+  // Clase para estilo
+  const btnCls  = inCart ? 'product-card-add-btn is-in-cart'
+                         : 'product-card-add-btn';
+  // Clase y data-id para poder saber qué card es en el handler
+  return `
+    <li class="product-card js_productLi" data-id="${p.id}">
+      <h3>${p.title}</h3>
+      <img src="${p.image}" alt="${p.title}">
+      <p>${Number(p.price).toFixed(2)} €</p>
+      <button class="${btnCls} js_buyBtn" type="button">${btnText}</button>
+    </li>
+  `;
+}
+
+
+//Pintar CARRITO
+
+
 
 //Filtro de BÚSQUEDA
 function applyFilter(query) {
@@ -83,6 +123,8 @@ function applyFilter(query) {
   renderCatalog(filteredCatalog);
 }
 
+
+
 // SECCIÓN DE FUNCIONES DE EVENTOS
 // Aquí van las funciones handler/manejadoras de eventos
 
@@ -91,7 +133,6 @@ function handleSearchClick(ev) {
   if (!catalog.length) return;
   applyFilter(searchInput.value);
 }
-
 
 
 // SECCIÓN DE EVENTOS
@@ -155,6 +196,8 @@ fetch(DATA_URL)
 
 catalog = [...seedCatalog]; // cargamos la semilla local (fallback)
 filteredCatalog = [...catalog];   // inicializa filtro
-renderCatalog(filteredCatalog); // pintamos el array 
+/*renderCatalog(filteredCatalog); // pintamos el array*/
+catalogUl.innerHTML = renderOneProduct(seedCatalog[0]); // pinta SOLO 1 tarjeta, prueba tras repintar*/
+
 
 /*catalogUl.innerHTML = renderOneProduct(product); // pinta SOLO 1 tarjeta, prueba inicial*/
