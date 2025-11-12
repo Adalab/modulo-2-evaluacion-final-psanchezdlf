@@ -71,7 +71,8 @@ footer {
 
 .catalog_list img {
   width: 100%;
-  height: 400px; /* pendiente corregir salto de tamaño de img */
+  height: 400px; /* pendiente corregir estilo responsive
+   */
 
 }
 
@@ -80,7 +81,7 @@ footer {
 @media (min-width: 1200px) {
   .catalog_list img {
   width: 100%;
-  height: 500px; /* pendiente corregir salto de tamaño de img */
+  height: 500px; /* pendiente corregir estilo responsive */
 }
 
 }
