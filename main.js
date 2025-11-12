@@ -6,7 +6,9 @@ console.log('Página y JS cargados!');
 // Éstos son los elementos que nos traemos de la página HTML y usamos en el código
 
 const catalogUl = document.querySelector('.catalog_list'); // UL donde pintamos el catálogo
-const product = { id: 1, title: 'Dexter', price: 2.99, image: './images/series/dexter.jpg' }; //tarjeta
+const searchForm  = document.querySelector('.search_form');
+const searchInput = document.querySelector('.search_input');
+const searchBtn   = document.querySelector('.search_btn');
 
 
 // SECCIÓN DE DATOS
@@ -15,7 +17,6 @@ const product = { id: 1, title: 'Dexter', price: 2.99, image: './images/series/d
 
 
 // Semilla local (fallback)
-
 const seedCatalog  = [
   { id: 1, title: 'Dexter',       price: 2.99, image: './images/series/dexter.jpg' },
   { id: 2, title: 'Breaking Bad', price: 3.49, image: './images/series/breaking-bad.jpg' },
@@ -30,10 +31,12 @@ const seedCatalog  = [
 ]; 
 
 // API del enunciado
-const DATA_URL  = 'https://fakestoreapi.com/products'; // Opción 1
+const DATA_URL = 'https://fakestoreapi.com/products'; // Opción 1
 
 //Principal
 let catalog = []
+
+let filteredCatalog = [];  // filtrado
 
 
 // SECCIÓN DE FUNCIONES
@@ -64,13 +67,39 @@ function renderCatalog(list) {
   catalogUl.innerHTML = html; 
 }
 
+//Filtro de BÚSQUEDA
+function applyFilter(query) {
+  const q = (query || '').toLowerCase().trim();
+
+  // Si no hay texto, mostramos todo el catálogo original
+  if (q === '') {
+    filteredCatalog = [...catalog];
+  } else {
+    filteredCatalog = catalog.filter(item =>
+      (item.title || '').toLowerCase().includes(q)
+    );
+  }
+
+  renderCatalog(filteredCatalog);
+}
+
 // SECCIÓN DE FUNCIONES DE EVENTOS
 // Aquí van las funciones handler/manejadoras de eventos
+
+function handleSearchClick(ev) {
+  ev.preventDefault(); // // Evita que el form se envíe/recargue la página
+  if (!catalog.length) return;
+  applyFilter(searchInput.value);
+}
+
 
 
 // SECCIÓN DE EVENTOS
 // Éstos son los eventos a los que reacciona la página
 // Los más comunes son: click (en botones, enlaces), input (en ídem) y submit (en form)
+
+searchBtn.addEventListener('click', handleSearchClick);
+
 
 
 // SECCIÓN DE ACCIONES AL CARGAR LA PÁGINA
@@ -78,11 +107,6 @@ function renderCatalog(list) {
 // Lo más común es:
 //   - Pedir datos al servidor
 //   - Pintar (render) elementos en la página
-
-catalogUl.innerHTML = renderOneProduct(product); // pinta SOLO 1 tarjeta
-catalog = [...seedCatalog];   // cargamos la semilla local (fallback)
-renderCatalog(catalog); // pintamos el array completo
-
 
 /*
 💡 NOTA IMPORTANTE:
@@ -128,5 +152,9 @@ fetch(DATA_URL)
   });
 
 // Mostramos catálogo personalizado
-catalog = [...seedCatalog];
-renderCatalog(catalog);
+
+catalog = [...seedCatalog]; // cargamos la semilla local (fallback)
+filteredCatalog = [...catalog];   // inicializa filtro
+renderCatalog(filteredCatalog); // pintamos el array 
+
+/*catalogUl.innerHTML = renderOneProduct(product); // pinta SOLO 1 tarjeta, prueba inicial*/
