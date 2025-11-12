@@ -102,6 +102,24 @@ function renderOneProduct(p) {
   `;
 }
 
+//Repintar TODAS las tarjetas y enganchar los botones
+function renderCatalog(list) {
+  if (!list || list.length === 0) {
+    catalogUl.innerHTML = '<li>(Sin resultados)</li>';
+    return;
+  }
+  let html = '';
+  for (const item of list) {
+    html += renderOneProduct(item); 
+  }
+  catalogUl.innerHTML = html;
+
+  const allBuyBtns = catalogUl.querySelectorAll('.product-card-add-btn');
+  for (const btn of allBuyBtns) {
+    btn.addEventListener('click', handleClickBuyBtn);
+  }
+}
+
 
 //Pintar CARRITO
 
@@ -196,8 +214,7 @@ fetch(DATA_URL)
 
 catalog = [...seedCatalog]; // cargamos la semilla local (fallback)
 filteredCatalog = [...catalog];   // inicializa filtro
-/*renderCatalog(filteredCatalog); // pintamos el array*/
-catalogUl.innerHTML = renderOneProduct(seedCatalog[0]); // pinta SOLO 1 tarjeta, prueba tras repintar*/
+renderCatalog(filteredCatalog); // pintamos el array*/
 
 
 /*catalogUl.innerHTML = renderOneProduct(product); // pinta SOLO 1 tarjeta, prueba inicial*/
