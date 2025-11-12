@@ -30,12 +30,15 @@ footer {
 /* Estilo de tarjetas */
 .catalog_list {
   list-style: none;
+  margin: 0;
+  padding: 0;
   display: grid;
   gap: 15px;
-  grid-template-columns: 1fr; /* 1 columna en móvil */
+  grid-template-columns: 1fr 1fr; /* 1 columna en móvil */
 }
 
 .catalog_list img {
+  width: 100%;
   height: 300px; 
 }
 
