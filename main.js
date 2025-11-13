@@ -14,7 +14,6 @@ const searchBtn   = document.querySelector('.search_btn');
 
 // Carrito
 const cartUl     = document.querySelector('.cart_list'); // lista del carrito
-const clearBtn   = document.querySelector('.clear-btn'); // botón "Vaciar"
 
 
 // SECCIÓN DE DATOS
@@ -45,6 +44,7 @@ let filteredCatalog = [];  // lo que se pinta tras filtrar
 
 // Carrito
 let cart = [];
+const CART_KEY = 'verflixCart'; // localStorage
 
 
 // SECCIÓN DE FUNCIONES
@@ -149,6 +149,32 @@ function renderCart() {
   }
 }
 
+// GUARDAR el carrito en localStorage
+function saveCart() {
+  // Convertimos el array cart a texto JSON y lo guardamos
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+}
+
+// Cargar el carrito desde localStorage
+function loadCart() {
+  // Leemos el texto guardado (puede ser null si no existe)
+  const saved = localStorage.getItem(CART_KEY);
+
+  if (!saved) {
+    // Si no hay nada guardado, dejamos el carrito vacío
+    cart = [];
+    return;
+  }
+
+  try {
+    // Intentamos convertir el texto JSON de vuelta a array
+    cart = JSON.parse(saved) || [];
+  } catch (err) {
+    console.error('Error parseando carrito del localStorage:', err);
+    cart = [];
+  }
+}
+
 //Filtro de BÚSQUEDA
 function applyFilter(query) {
   const q = (query || '').toLowerCase().trim();
@@ -192,11 +218,15 @@ function handleClickBuyBtn(ev) {
     cart.push(product);
   }
 
+ // Guardar el nuevo estado del carrito en localStorage
+  saveCart();
+
+  // Repintar carrito y catálogo
   renderCart();
   renderCatalog(filteredCatalog);
 }
 
-// 3. Eliminar un producto desde el carrito (5 pasos)
+// 3. Eliminar un producto desde el carrito (6 pasos)
 function handleClickRemoveFromCart(ev) {
   // 1. Encontrar el <li> del carrito donde se hizo click
   // ev.currentTarget es el botón "Eliminar" que lleva el addEventListener
@@ -210,10 +240,13 @@ function handleClickRemoveFromCart(ev) {
   //    nos quedamos con todos MENOS el que tiene ese id
   cart = cart.filter(item => item.id !== id); // crea un nuevo array sin ese producto (<li>)
 
-  // 4. Repintar la lista del carrito, ya sin ese <li>
+   // 4. Guardar cambios en localstorage
+  saveCart();
+
+  // 5. Repintar la lista del carrito, ya sin ese <li>
   renderCart();
 
-  // 5. Repintar el catálogo para que el botón vuelva a "Comprar". 
+  // 6. Repintar el catálogo para que el botón vuelva a "Comprar". 
   // Ya que isInCart(id) ahora será false, el botón de esa card pasará a “Comprar” otra vez.
   renderCatalog(filteredCatalog);
 }
@@ -280,9 +313,8 @@ fetch(DATA_URL)
 
 catalog = [...seedCatalog]; // cargamos la semilla local (fallback)
 filteredCatalog = [...catalog];   // inicializa filtro
-renderCatalog(filteredCatalog); // pintamos el array
-renderCart(); // carrito, muestra "Vacío" al inicio
-
-
+loadCart(); // cargamos carrito desde localStorage 
+renderCatalog(filteredCatalog); // pintamos el catálogo
+renderCart(); // pintamos el carrito, muestra "Añade aquí tu peli/serie" al inicio
 
 /*catalogUl.innerHTML = renderOneProduct(product); // pinta SOLO 1 tarjeta, prueba inicial*/
