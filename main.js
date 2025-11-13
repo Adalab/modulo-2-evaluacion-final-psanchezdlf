@@ -131,7 +131,9 @@ function renderCart() {
   for (const item of cart) {
     html += `
       <li class="cart-item" data-id="${item.id}">
-        ${item.title} <img src="${item.image}" ${Number(item.price)} €
+        ${item.title} 
+        <img src="${item.image}" class="cart-item-img">
+        ${Number(item.price)} €
         <button class="js_removeBtn remove-btn" type="button">Eliminar</button>
       </li>
     `;
