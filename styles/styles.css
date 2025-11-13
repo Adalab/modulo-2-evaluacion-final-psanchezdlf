@@ -2,6 +2,8 @@
     --bg:#0e0f13;
     --text:#e5e7eb;
     --accent:red;
+    --border: white;
+    --border2: #374151;
     --spacing: 2rem;
   }
 
@@ -23,6 +25,28 @@ footer {
 /* 1. HEADER */
 
 .header_logo {width:400px; height: auto;} /* Tamaño logo */
+
+/* Buscador */
+.search_form {
+  display: flex;
+  gap:10px;
+  max-width: 500px;         /* ancho máximo del bloque */
+}
+
+.search_input {
+  flex: 1;                  /* ocupa todo el ancho disponible */
+  padding: 0.75rem 1rem;    /* más alto */
+  border: 1px solid var(--border2);
+  color: var(--text);
+}
+
+.header_title {
+  margin:0;
+}
+
+.header_subtitle {
+ margin-top: 0;
+}
 
 /* 2. MAIN */
 
@@ -78,7 +102,9 @@ footer {
 
 /* 3. FOOTER */
 
-
+.footer_content {
+  border-top: solid 1px var(--border);
+}
 
 /* MEDIA QUERIES */
 
@@ -101,7 +127,6 @@ footer {
    */
 
 }
-
 }
 
 @media (min-width: 1200px) {
@@ -109,6 +134,5 @@ footer {
   width: 100%;
   height: 500px; /* pendiente corregir estilo responsive */
 }
-
 }
 
