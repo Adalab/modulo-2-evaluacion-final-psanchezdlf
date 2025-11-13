@@ -113,7 +113,7 @@ function renderCatalog(list) {
     html += renderOneProduct(item); 
   }
   catalogUl.innerHTML = html;
-
+// Enganchar eventos de comprar/eliminar
   const allBuyBtns = catalogUl.querySelectorAll('.product-card-add-btn');
   for (const btn of allBuyBtns) {
     btn.addEventListener('click', handleClickBuyBtn);
@@ -121,8 +121,29 @@ function renderCatalog(list) {
 }
 
 //Pintar CARRITO
+function renderCart() {
+  if (!cart.length) {
+    cartUl.innerHTML = '<li>Añade aquí tu peli/serie</li>';
+    return;
+  }
 
+  let html = '';
+  for (const item of cart) {
+    html += `
+      <li class="cart-item" data-id="${item.id}">
+        ${item.title} <img src="${item.image}" ${Number(item.price)} €
+        <button class="js_removeBtn remove-btn" type="button">Eliminar</button>
+      </li>
+    `;
+  }
+  cartUl.innerHTML = html;
 
+ // Enganchar eventos a los botones del carrito
+  const allRemoveBtns = cartUl.querySelectorAll('.js_removeBtn');
+  for (const btn of allRemoveBtns) {
+    btn.addEventListener('click', handleClickRemoveFromCart);
+  }
+}
 
 //Filtro de BÚSQUEDA
 function applyFilter(query) {
@@ -141,15 +162,38 @@ function applyFilter(query) {
 }
 
 
-
 // SECCIÓN DE FUNCIONES DE EVENTOS
 // Aquí van las funciones handler/manejadoras de eventos
 
+// 1. Buscar/filtrar
 function handleSearchClick(ev) {
   ev.preventDefault(); // // Evita que el form se envíe/recargue la página
   if (!catalog.length) return;
   applyFilter(searchInput.value);
 }
+
+// 2. Comprar/eliminar desde el catálogo
+function handleClickBuyBtn(ev) {
+  const li = ev.currentTarget.closest('.js_productLi');
+  const id = Number(li?.dataset.id);
+  if (!id) return;
+
+  if (isInCart(id)) {
+    // quitar del carrito
+    cart = cart.filter(item => item.id !== id);
+  } else {
+    // añadir al carrito
+    const product = catalog.find(p => p.id === id);
+    if (!product) return;
+    cart.push(product);
+  }
+
+  renderCart();
+  renderCatalog(filteredCatalog);
+}
+
+
+
 
 
 // SECCIÓN DE EVENTOS
@@ -213,7 +257,9 @@ fetch(DATA_URL)
 
 catalog = [...seedCatalog]; // cargamos la semilla local (fallback)
 filteredCatalog = [...catalog];   // inicializa filtro
-renderCatalog(filteredCatalog); // pintamos el array*/
+renderCatalog(filteredCatalog); // pintamos el array
+renderCart(); // carrito, muestra "Vacío" al inicio
+
 
 
 /*catalogUl.innerHTML = renderOneProduct(product); // pinta SOLO 1 tarjeta, prueba inicial*/
