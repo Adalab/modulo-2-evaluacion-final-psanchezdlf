@@ -54,3 +54,5 @@ Proyecto desarrollado por Patricia Sánchez.
 Clona este repositorio con git en **Visual Studio Code**:
 
 git clone https://github.com/Adalab/modulo-2-evaluacion-final-psanchezdlf
+
+O accede a través del siguiente enlace: https://beta.adalab.es/modulo-2-evaluacion-final-psanchezdlf/
