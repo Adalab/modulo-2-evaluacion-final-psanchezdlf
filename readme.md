@@ -8,6 +8,16 @@ Permite buscar series/películas, añadirlas a una lista de favoritos/carrito y 
 - 💾 Persistencia mediante `localStorage`.
 - 🌓 Interfaz responsive y minimalista.
 
+## 💡 NOTA IMPORTANTE:
+
+Al iniciar el ejercicio, entendí que debíamos crear una tienda propia desde cero, por lo que diseñé "Verflix" como un videoclub online con su propio catálogo de series y películas.
+
+Luego me di cuenta de que el enunciado pedía usar la API de productos proporcionada (`https://fakestoreapi.com/products`), así que he implementado correctamente el `fetch()` para cumplir ese requisito técnico. El código realiza la petición y recibe los datos, visibles en consola.
+
+No obstante, para mantener la coherencia visual y el concepto del proyecto, opto por una "opción B": mantener en pantalla mi catálogo personalizado de series y películas, usando la API solo como demostración funcional.
+
+Todo esto queda reflejado en el código.
+
 ## 🧠 Objetivo del ejercicio
 
 - Practicar la estructura de código modular en JavaScript:
