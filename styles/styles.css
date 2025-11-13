@@ -1,6 +1,7 @@
 :root{
     --bg:#0e0f13;
     --text:#e5e7eb;
+    --text2: black;
     --accent:red;
     --border: white;
     --border2: #374151;
@@ -37,7 +38,7 @@ footer {
   flex: 1;                  /* ocupa todo el ancho disponible */
   padding: 0.75rem 1rem;    /* más alto */
   border: 1px solid var(--border2);
-  color: var(--text);
+  color: var(--text2);
 }
 
 .header_title {
