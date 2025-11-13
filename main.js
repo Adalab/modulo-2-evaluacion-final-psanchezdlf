@@ -129,8 +129,10 @@ function renderCart() {
 
   let html = '';
   for (const item of cart) {
+    // Cada <li> tiene data-id, ahí guardamos qué producto es.
+    //Cada botón tiene clase js_removeBtn para poder seleccionarlos después.
     html += `
-      <li class="cart-item" data-id="${item.id}">
+      <li class="cart-item" data-id="${item.id}"> 
         ${item.title} 
         <img src="${item.image}" class="cart-item-img">
         ${Number(item.price)} €
@@ -194,8 +196,27 @@ function handleClickBuyBtn(ev) {
   renderCatalog(filteredCatalog);
 }
 
+// 3. Eliminar un producto desde el carrito (5 pasos)
+function handleClickRemoveFromCart(ev) {
+  // 1. Encontrar el <li> del carrito donde se hizo click
+  // ev.currentTarget es el botón "Eliminar" que lleva el addEventListener
+  const li = ev.currentTarget.closest('.cart-item');
 
+  // 2. Leer el id del producto desde data-id, nos da el id que guardamos en el HTML (data-id="...").
+  const id = Number(li?.dataset.id);
+  if (!id) return; // si no hay id, salimos
 
+  // 3. Actualizar el estado del carrito:
+  //    nos quedamos con todos MENOS el que tiene ese id
+  cart = cart.filter(item => item.id !== id); // crea un nuevo array sin ese producto (<li>)
+
+  // 4. Repintar la lista del carrito, ya sin ese <li>
+  renderCart();
+
+  // 5. Repintar el catálogo para que el botón vuelva a "Comprar". 
+  // Ya que isInCart(id) ahora será false, el botón de esa card pasará a “Comprar” otra vez.
+  renderCatalog(filteredCatalog);
+}
 
 
 // SECCIÓN DE EVENTOS
