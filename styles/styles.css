@@ -101,13 +101,20 @@ footer {
   width: 50%
 }
 
+/* Cambio de estilos del botón cuando el producto está en el carrito */
+.product-card-add-btn.is-in-cart {
+  background-color: var(--accent); /* rojo */
+  color: var (--text);            /* texto blanco */
+}
+
 /* 3. FOOTER */
 
 .footer_content {
   border-top: solid 1px var(--border);
 }
 
-/* MEDIA QUERIES */
+/* MEDIA QUERIES */ /* pendiente corregir estilo responsive */
+  
 
 /* tablet/pc: 2 columnas*/
 @media (min-width: 768px) {
@@ -124,8 +131,7 @@ footer {
 
 .catalog_list img {
   width: 100%;
-  height: 400px; /* pendiente corregir estilo responsive
-   */
+  height: 400px; 
 
 }
 }
@@ -133,7 +139,7 @@ footer {
 @media (min-width: 1200px) {
   .catalog_list img {
   width: 100%;
-  height: 500px; /* pendiente corregir estilo responsive */
+  height: 500px; 
 }
 }
 

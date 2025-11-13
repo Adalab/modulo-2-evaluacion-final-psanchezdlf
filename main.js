@@ -123,7 +123,7 @@ function renderCatalog(list) {
 //Pintar CARRITO
 function renderCart() {
   if (!cart.length) {
-    cartUl.innerHTML = '<li>Añade aquí tu peli/serie</li>';
+    cartUl.innerHTML = '<li>Añade aquí tu peli/serie <i class="fa-regular fa-face-smile"></i> </li>';
     return;
   }
 
